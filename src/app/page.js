@@ -1,9 +1,13 @@
 import Image from "next/image";
 import ServicesSection from "./components/ServicesSection";
+import dbConnect from "@/lib/dbConnect";
 
-export default function Home() {
+export default async function Home() {
+  const serviceCollection = await dbConnect("services")
+  const data = await serviceCollection.find({}).toArray();
+
   return (
-<ServicesSection></ServicesSection>
+    <ServicesSection data={data}></ServicesSection>
 
 
 

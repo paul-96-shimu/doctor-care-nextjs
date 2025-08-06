@@ -3,9 +3,8 @@ import dbConnect from '@/lib/dbConnect';
 import Image from 'next/image';
 import React from 'react';
 
-export default async function ServicesSection() {
-  const serviceCollection = await dbConnect("tost_services");
-  const data = await serviceCollection.find({}).toArray();
+export default function ServicesSection({data}) {
+  
 
   return (
     <div className="grid grid-cols-12 gap-4 p-4">

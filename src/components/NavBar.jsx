@@ -84,7 +84,9 @@ export default function NavBar() {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Appointment</a>
+                <Link href="/appointment" className="btn">Appointment</Link>
+                <Link href="/login" className="btn ml-6">Login</Link>
+                <Link href="/register" className="btn ml-6">Register</Link>
             </div>
         </div>
     )

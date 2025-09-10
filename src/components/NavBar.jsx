@@ -69,14 +69,15 @@ export default function NavBar() {
                         {navMenu()}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">
+               <Link href={"/"} className="btn btn-ghost normal-case text-xl">
                     <Image
-                        src={'/assets/logo.svg'}
-                        alt="Logo"
-                        width={50}
+                        src={"/assets/images/logo.svg"}
+                        width={150}
                         height={50}
+                        alt={'logo'}
+                        
                     />
-                </a>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

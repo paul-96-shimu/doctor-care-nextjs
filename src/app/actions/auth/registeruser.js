@@ -26,13 +26,15 @@ export const registerUser = async (payload) => {
         const result = await userCollection.insertOne(payload)
 
         const {acknowledged, insertedId} = result
-        return{ acknowledged,insertedId }
+        result.insertedId = insertedId.toString()
+        result.success = acknowledged
+        return result;
 
 
     }
-
-
-
-
-    return  {success: false};
+return  null;
 }
+
+
+
+    

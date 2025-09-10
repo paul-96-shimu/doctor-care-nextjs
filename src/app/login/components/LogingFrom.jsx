@@ -6,13 +6,14 @@ import { signIn } from "next-auth/react"
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 
 
 export default function LogInFrom() {
 
-  // const router = useRouter()
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,10 +21,19 @@ export default function LogInFrom() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    toast("Logging in...")
 
     try {
-      await signIn("credentials", { email, password, callbackUrl: "/" })
-      // router.push("/")
+     const response = await signIn("credentials", { email, password, callbackUrl: "/", redirect: false })
+
+     if (response.ok) {
+       toast.success("Login successful!")
+       router.push("/")
+       form.reset()
+     } else{
+        toast.error("Login failed")
+     }
+     
       // console.log({email,password})
     } catch (error) {
       console.log(error)

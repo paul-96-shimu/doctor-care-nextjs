@@ -4,10 +4,9 @@
 import React from 'react'
 import { signIn } from "next-auth/react"
 
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import SocialLogin from './SocialLogin';
 
 
 
@@ -77,20 +76,7 @@ export default function LogInFrom() {
         <span className="w-1/3 border-b"></span>
       </div>
 
-      <div className="space-y-3">
-        <button
-
-          className="w-full flex items-center justify-center gap-2 border p-2 rounded-lg hover:bg-gray-100"
-        >
-          <FcGoogle size={20} /> Continue with Google
-        </button>
-        <button
-
-          className="w-full flex items-center justify-center gap-2 border p-2 rounded-lg hover:bg-gray-100"
-        >
-          <FaGithub size={20} /> Continue with GitHub
-        </button>
-      </div>
+     <SocialLogin></SocialLogin>
     </div>
   )
 }

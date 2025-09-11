@@ -6,8 +6,8 @@ import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
 import { ObjectId } from 'mongodb';
 
 export default async function ServiceDetailspage({ params }) {
-  const p =  await params;
-  const servicesCollection = dbConnect(collectionNamesObj.servicesCollection);
+  const p = await params;
+  const servicesCollection = await dbConnect(collectionNamesObj.servicesCollection);
   const data = await servicesCollection.findOne({ _id: new ObjectId(p.id) });
 
 
@@ -30,31 +30,46 @@ export default async function ServiceDetailspage({ params }) {
       </section>
 
       {/* Main Content */}
-      <section className="p-8">
+      <section className="container mx-auto my-12 px-4">
         {data ? (
           <>
+            {/* Image Top */}
             {data.img ? (
               <Image
                 src={data.img}
-                alt={data.title || 'Service Image'}
-                width={752}
-                height={300}
-                className="w-full h-auto rounded"
+                alt={data.title || "Service Image"}
+                width={1137}
+                height={350}
+                className="rounded mx-auto"
               />
             ) : (
               <p className="text-gray-500 mb-4">No image available</p>
             )}
 
-            <h2 className="text-3xl font-bold mt-6 mb-4">{data.title}</h2>
-            <p className="mb-2">{data.description}</p>
-           
+            {/* Content Row */}
+            <div className=" ">
+              {/* Left Side: Title + Description */}
+              <div className="flex-1">
+                <h2 className="text-3xl font-bold mb-4 text-center">{data.title}</h2>
+                <p className="mb-4  text-center">{data.description}</p>
+              </div>
+
+              {/* Right Side: Checkout Button */}
+              <div className='mt-6'>
+                <button
+                  className="mx-auto block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition"
+                >
+                  Proceed to Checkout
+                </button>
+              </div>
+            </div>
           </>
         ) : (
           <p className="text-red-500">Service not found.</p>
         )}
-
-       
       </section>
+
+
     </div>
   );
 }

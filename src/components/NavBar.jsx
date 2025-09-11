@@ -76,9 +76,9 @@ console.log(session)
                 </div>
                <Link href={"/"} className="btn btn-ghost normal-case text-xl">
                     <Image
-                        src={"/assets/images/logo.svg"}
-                        width={150}
-                        height={50}
+                        src={"/assets/logo.svg"}
+                        width={50}
+                        height={60}
                         alt={'logo'}
 
                     />

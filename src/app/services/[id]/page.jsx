@@ -1,15 +1,14 @@
 // app/services/[id]/page.jsx
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-import dbConnect, { collectionNamesObj } from '@/lib/dbConnect';
-import { ObjectId } from 'mongodb';
+
 
 export default async function ServiceDetailspage({ params }) {
   const p = await params;
-  const servicesCollection = await dbConnect(collectionNamesObj.servicesCollection);
-  const data = await servicesCollection.findOne({ _id: new ObjectId(p.id) });
-
+  const res = await fetch(`http://localhost:3000/api/service/${p.id}` );
+  const data = await res.json();
 
   return (
     <div>
@@ -56,11 +55,14 @@ export default async function ServiceDetailspage({ params }) {
 
               {/* Right Side: Checkout Button */}
               <div className='mt-6'>
-                <button
-                  className="mx-auto block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition"
-                >
-                  Proceed to Checkout
-                </button>
+
+                <Link href={`/checkout/${data._id}`}>
+                  <button
+                    className="mx-auto block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition"
+                  >
+                    Proceed to Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           </>

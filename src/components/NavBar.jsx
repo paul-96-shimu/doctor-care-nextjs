@@ -51,8 +51,8 @@ console.log(session)
 
 
                 <li>
-                    <Link href={"/contacts"}>
-                        Contact
+                    <Link href={"/my-bookings"}>
+                        My Bookings
                     </Link>
                 </li>
             </>

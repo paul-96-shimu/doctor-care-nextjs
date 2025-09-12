@@ -8,9 +8,9 @@ import Link from 'next/link';
 import React from 'react';
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-export default async function ServicesSection() {
 
-  const servicesCollection = dbConnect(collectionNamesObj.servicesCollection);
+export default async function ServicesSection() {
+  const servicesCollection = await dbConnect(collectionNamesObj.servicesCollection);
   const data = await servicesCollection.find({}).toArray();
 
 

@@ -55,21 +55,20 @@ pages:{
     signIn:"/login"
 },
 callbacks:{
-    async signIn({ user, account, profile, email, credentials }) {
-        console.log({user, account, profile, email, credentials})
+  async signIn({ user, account, profile, email, credentials }) {
+    console.log({user, account, profile, email, credentials})
 
-        if(account){
-            const{providerAccountId, provider} = account
-                 const{email: user_email ,image,name} = user
-                 const userCollection = dbConnect(collectionNamesObj.userCollection);
-                 const isExistingUser = await userCollection.findOne({providerAccountId})
-                 if(!isExistingUser){
-                    const payload ={providerAccountId, provider, email:user_email,image,name}
-                    await userCollection.insertOne(payload)
-                 }
-        }
-   
-      return true
-    },
+    if(account){
+      const { providerAccountId, provider } = account;
+      const { email: user_email, image, name } = user;
+      const userCollection = await dbConnect(collectionNamesObj.userCollection);
+      const isExistingUser = await userCollection.findOne({ providerAccountId });
+      if(!isExistingUser){
+        const payload = { providerAccountId, provider, email: user_email, image, name };
+        await userCollection.insertOne(payload);
+      }
+    }
+    return true;
+  },
 }
 }

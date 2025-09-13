@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import DeleteBooking from "../my-bookings/components/DeleteBooking";
 
 
@@ -37,12 +38,15 @@ export default function MyBookingTable({ bookings }) {
                 <td>{booking.date}</td>
                 <td>${booking.service_price}</td>
                 <td className="flex gap-2">
+               <Link href={`/my-bookings/${booking._id}`}>
                   <button
                     className="btn btn-sm btn-primary"
                     // onClick={() => handleUpdate(booking.id)}
                   >
                     Update
                   </button>
+               
+               </Link>
                  <DeleteBooking id={booking._id}></DeleteBooking>
                 </td>
               </tr>

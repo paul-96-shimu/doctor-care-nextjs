@@ -5,9 +5,10 @@ import Link from 'next/link';
 import React from 'react';
 
 
+
 export default async function ServiceDetailspage({ params }) {
-  const p = await params;
-  const res = await fetch(`http://localhost:3000/api/service/${p.id}` );
+  const p = params;
+  const res = await fetch(`http://localhost:3000/api/service/${p._id}`);
   const data = await res.json();
 
   return (

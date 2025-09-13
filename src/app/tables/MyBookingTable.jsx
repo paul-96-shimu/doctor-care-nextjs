@@ -1,19 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import DeleteBooking from "../my-bookings/components/DeleteBooking";
+
+
 
 export default function MyBookingTable({ bookings }) {
   // bookings হলো array of objects: [{id, image, service, date, price}, ...]
-  
-  const handleDelete = (id) => {
-    console.log('Delete booking', id);
-    // API call or state update here
-  };
 
-  const handleUpdate = (id) => {
-    console.log('Update booking', id);
-    // Open modal or navigate to update page
-  };
 
   return (
     <div className="overflow-x-auto">
@@ -31,7 +24,7 @@ export default function MyBookingTable({ bookings }) {
         <tbody>
           {bookings && bookings.length > 0 ? (
             bookings.map((booking, idx) => (
-              <tr key={booking.id}>
+              <tr key={booking._id}>
                 <th>{idx + 1}</th>
                 <td>
                   <div className="avatar">
@@ -46,16 +39,11 @@ export default function MyBookingTable({ bookings }) {
                 <td className="flex gap-2">
                   <button
                     className="btn btn-sm btn-primary"
-                    onClick={() => handleUpdate(booking.id)}
+                    // onClick={() => handleUpdate(booking.id)}
                   >
                     Update
                   </button>
-                  <button
-                    className="btn btn-sm btn-error"
-                    onClick={() => handleDelete(booking.id)}
-                  >
-                    Delete
-                  </button>
+                 <DeleteBooking id={booking._id}></DeleteBooking>
                 </td>
               </tr>
             ))
